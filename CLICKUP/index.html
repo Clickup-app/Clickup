@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Clickup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Clickup</h1>
+    <div id="user-info"></div>
+  </header>
+
+  <main>
+    <div id="auth-section">
+      <h2>Registrarse en Clickup</h2>
+      <input type="text" id="username" placeholder="Nombre de usuario">
+      <input type="file" id="photoFile" accept="image/*">
+      <input type="email" id="email" placeholder="Correo">
+      <input type="password" id="password" placeholder="Contraseña">
+      <button id="signup-btn">Registrarse</button>
+      <button id="login-btn">Iniciar sesión</button>
+    </div>
+
+    <div id="post-section" style="display:none;">
+      <input type="text" id="post-text" placeholder="Escribe tu estado">
+      <input type="text" id="post-emoji" placeholder="Emoji 😄">
+      <button id="post-btn">Publicar</button>
+    </div>
+
+    <div id="feed"></div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROJECT_ID.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      storageBucket: "TU_PROJECT_ID.appspot.com",
+      messagingSenderId: "TU_MESSAGING_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.auth = auth;
+    window.db = db;
+  </script>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
